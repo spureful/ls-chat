@@ -10,10 +10,10 @@ html {
 
 
 body {
-//	font-family: 'Roboto', Helvetica, sans-serif;
+	font-family: 'Ubuntu', Helvetica, sans-serif;
 	font-size: 16px;
 //	line-height: 1.42;
-//	color: $text-color;
+	color: $text-color;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	
@@ -25,11 +25,6 @@ body {
 }
 
 
-
-.container {
-	margin: 0 auto;
-	width: 95%;
-}
 
 button {
 	border: 0;
@@ -62,3 +57,21 @@ p {
 	padding: 0;
 }
 
+.wrapper {
+	width: 100%;
+	min-height: 100%;
+	background-color: #09101a;
+	
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.container {
+	width: 80%;
+	margin: 0 auto;
+}

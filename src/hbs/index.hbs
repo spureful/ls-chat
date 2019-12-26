@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="Ru ru">
+  <head>
+    <meta charset="utf-8">
+    <meta content="ie=edge" http-equiv="x-ua-compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Authorisation</title>
+    <link rel="stylesheet" href="css/main.css">
+  </head>
+  <body>
+    <div class="wrapper">
+    
+      <div class="app">
+        <aside class="aside">
+          <div class="aside__menu">
+            <button class="aside__menu--btn"><span class="aside__menu--btnline"></span></button>
+            <input class="aside__menu--input" placeholder="Найти...">
+          </div>
+          <ul class="participant">
+            <li class="participant__item">
+              <div class="participant__ava-wrap"><img class="participant__ava" src=""></div>
+              <div class="participant__info">
+                <h3 class="participant__name"> </h3>
+                <div class="participant_mes"> </div>
+              </div>
+            </li>
+          </ul>
+        </aside>
+        <main class="chat">
+          <div class="chat__title">
+            <h3 class="chat__name">Чат</h3>
+            <div class="chat__participants">2 участника</div>
+          </div>
+          <div class="chat__block">
+            <ul class="chat__mes-list">
+              <li class="chat__mes-item">
+                <div class="chat__ava-wrap"><img class="chat__ava" src="img/men1.png"></div>
+                <ul class="chat__messages">
+                  <li class="chat__message"><span class="chat__text">Привет!</span><span class="chat__date">17:55</span></li>
+                  <li class="chat__message"><span class="chat__text">Как дела?</span><span class="chat__date">17:55</span></li>
+                </ul>
+              </li>
+              <li class="chat__mes-item">
+                <div class="chat__ava-wrap"><img class="chat__ava" src="/img/men2.jpg"></div>
+                <ul class="chat__messages">
+                  <li class="chat__message"><span class="chat__text">Привет!</span><span class="chat__date">17:58</span></li>
+                  <li class="chat__message"><span class="chat__text">Хорошо</span><span class="chat__date">17:58</span></li>
+                  <li class="chat__message"><span class="chat__text">Как у тебя дела?</span><span class="chat__date">17:58</span></li>
+                </ul>
+              </li>
+              <li class="chat__mes-item">
+                <div class="chat__ava-wrap"><img class="chat__ava" src="/img/men1.png"></div>
+                <ul class="chat__messages">
+                  <li class="chat__message"><span class="chat__text">У меня тоже все хорошо</span><span class="chat__date">17:59</span></li>
+                  <li class="chat__message"><span class="chat__text">Рад был пообщаться</span><span class="chat__date">17:59</span></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <div class="chat__form">
+            <input class="chat__input" placeholder="Введите сообщение...">
+            <button class="chat__send-btn" typre="submit">Отправить</button>
+          </div>
+        </main>
+      </div>
+    
+      <div class="error">
+          <div class="error__block">
+            <h2 class="error__title"></h2>
+            <button class="error__btn">ok</button>
+          </div>
+        </div>
+   
+    </div>
+    
+    
+
+    <script type="text/x-handlebars-template" id="authorisation">
+	    <div class="authorisation">
+        <h1 class="authorisation__title">Авторизация</h1>
+        <p class="authorisation__descr">Введите пожалуйста своё фио и ник для дальнейшей авторизации</p>
+        <form class="authorisation__form" name="publish">
+         
+            <input class="authorisation__input" id="authorisation-name" name="message" placeholder="Введите своё имя">
+         
+            <input class="authorisation__input" id="authorisation-nick" placeholder="Введите свой ник">
+         
+          <button class="authorisation__enter" type="button"> ВОЙТИ </button>
+        </form>
+        
+       
+      </div>
+	  </script>
+     <script type="text/x-handlebars-template" id="photoLoad">
+	 <div class="app">
+        <aside class="aside">
+          <div class="aside__menu">
+            <button class="aside__menu--btn"><span class="aside__menu--btnline"></span></button>
+            <input class="aside__menu--input" placeholder="Найти...">
+          </div>
+          <ul class="participant">
+		  {{#each participant}}
+            <li class="participant__item">
+              <div class="participant__ava-wrap"><img class="participant__ava" src="{{participantImg}}"></div>
+              <div class="participant__info">
+                <h3 class="participant__name"> {{participantName}}</h3>
+                <div class="participant_mes">{{participantMes}} </div>
+              </div>
+            </li>
+			{{/each}}
+          </ul>
+        </aside>
+        <main class="chat">
+          <div class="chat__title">
+            <h3 class="chat__name">Чат</h3>
+            <div class="chat__participants">2 участника</div>
+          </div>
+          <div class="chat__block">
+            <ul class="chat__mes-list">
+			
+                </ul>
+              </li>
+	  </script>
+    <script type="text/x-handlebars-template" id="photoModal">
+		<div class="modal-wrap">	
+	<div class="photo__modal">
+        <button class="photo__modal-close"></button>
+        <h3 class="photo__title">Загрузка фото</h3>
+        <div class="photo__row">
+          <div class="photo__modal-wrap"><img class="photo__img" src=""></div>
+          <div class="photo__col">
+            <h4 class="photo__name">Алексей Трубин</h4>
+            <div class="photo__status">В сети</div>
+          </div>
+        </div>
+      </div>
+	  </div>
+	  </script>
+	  
+	    <script type="text/x-handlebars-template" id="photoLoad">
+		<div class="modal-wrap">	
+			   <div class="photo__load">
+        <div class="photo__load-wrap"><img class="photo__load-ava" src="img/men2.jpg">
+          <div class="photo__load-wrap-second"></div>
+        </div>
+        <div class="photo__load-descr">Область для профильной фотографии</div>
+        <div class="photo__load-btns">
+          <button class="photo__load-btn" id="photo-cancel">ОТМЕНА</button>
+          <button class="photo__load-btn" id="photo-save">СОХРАНИТЬ</button>
+        </div>
+      </div>
+		 </div>
+	  </script>
+	  
+
+  </body>
+</html>

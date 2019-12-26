@@ -1,21 +1,25 @@
-include ./common/_mixins
-block variables
+extends layout/layout.pug
 
-doctype html
-html(lang="Ru ru")
-	head
-		meta(charset="utf-8")
-		meta(content="ie=edge" http-equiv="x-ua-compatible")
-		meta(content="width=device-width, initial-scale=1" name="viewport")
-		title 
-		link(rel='stylesheet' href='css/main.css')
+block content
 	
-	body
-		.wrapper.js-wrapper-preloader
-			.main 123 356 758
-				
-	
-	
-	script(src='js/scripts.js')
+	.authorisation
+		
+		h1.authorisation__title Авторизация
+		p.authorisation__descr Введите пожалуйста своё фио и ник для дальнейшей авторизации
+		form.authorisation__form(name="publish")
+			label.authorisation__label
+				input.authorisation__input#authorisation-name(
+            name="message" placeholder="Введите своё имя")
+			label.authorisation__label
+				input.authorisation__input#authorisation-nick(placeholder="Введите свой ник")
+			button(type='button').authorisation__enter ВОЙТИ
 
-s
+			
+			
+	include common/chat.pug
+	include common/photo.pug
+	
+	.error
+		.error__block
+			h2.error__title
+			button.error__btn ok
