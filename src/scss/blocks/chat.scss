@@ -271,7 +271,34 @@
 	display: flex;
 	margin-bottom: 15px;
 
-	&:nth-child(2n) {
+//	&:nth-child(2n) {
+//		align-self: flex-end;
+//
+//		.chat__ava-wrap {
+//			order: 2;
+//			margin-right: 0;
+//		}
+//
+//
+//
+//		.chat__message {
+//			background-color: #2b5278;
+//			order: 1;
+//			margin-right: 15px;
+//
+//			&:before {
+//				background-image: url(../img/triangle-right.svg);
+//				left: calc(100% - 6px);
+//
+//			}
+//		}
+//
+//	}
+
+
+}
+
+.chat__messages.active {
 		align-self: flex-end;
 
 		.chat__ava-wrap {
@@ -292,10 +319,6 @@
 
 			}
 		}
-
-	}
-
-
 }
 
 .chat__ava-wrap {

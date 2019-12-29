@@ -1,16 +1,8 @@
-//
-//if (!window.WebSocket) {
-//	console.log('WebSocket в этом браузере не поддерживается.');
-//}
-//
-
 (function initial() {
-
 
 	let init = false;
 
 	let usersOnlineArr = [];
-
 
 	const blockError = document.querySelector('.error');
 	const titleError = document.querySelector('.error__title');
@@ -23,9 +15,6 @@
 	const users = JSON.parse(storage.data || '[]');
 
 	let currentUser = {};
-
-	let thisUsers = [];
-	let sendUser = {};
 
 	const socket = new WebSocket('ws://localhost:3000');
 
@@ -105,13 +94,9 @@
 	socket.addEventListener('message', function (e) {
 
 		const users = JSON.parse(e.data);
-		for (let key in users.users) {
-			thisUsers.push(users.users[key]);
-		}
 
 		function initPhoto() {
 			const asideAva = document.querySelector(`#asideAva${currentUser.nick}`);
-			//		const chatAva = document.querySelectorAll(`#chatAva${currentUser.nick}`);
 
 			for (let key in users.users) {
 				if (currentUser.nick === users.users[key].nick) {
@@ -119,16 +104,6 @@
 					if (asideAva) {
 						asideAva.setAttribute('src', `${users.users[key].img}`);
 					}
-					//				if (chatAva) {
-					//					if (chatAva.length > 1) {
-					//						chatAva.forEach(ava => {
-					//							ava.setAttribute('src', `${users.users[key].img}`);
-					//						})
-					//					} else if (chatAva.length == 1) {
-					//						console.log(users.users[key].img)
-					//						chatAva.setAttribute('src', `${users.users[key].img}`);
-					//					}
-					//				}
 				}
 			}
 		}
@@ -161,6 +136,7 @@
 				usersList.innerHTML = usersItem;
 				usersOnlineCount();
 				initPhoto();
+				initLastMessage();
 
 			}
 
@@ -170,20 +146,16 @@
 
 		} else {
 
-			console.log(sendUser);
-			addMes(JSON.parse(e.data));
+			addMes(users.lastMes, users.img, users.nick);
+			initChatAva();
+			initLastMessage();
+			initActiveMessage();
 		};
 	});
 
-	function addMes(mes) {
+	function addMes(mes, img, nick) {
 
 		const ChatList = document.querySelector('.chat__mes-list');
-		
-		for (us of thisUsers) {
-				if (us.nick === currentUser.nick) {
-					sendUser = us;
-				}
-			}
 
 		const date = new Date();
 		let hour = date.getHours();
@@ -191,7 +163,7 @@
 		let currentDate = `${hour}:${minutes}`;
 
 		const mesTemplate = `
-	                <div class="chat__ava-wrap"><img class="chat__ava" src="${sendUser.img}" id="chatAva${sendUser.nick}" ></div>
+	                <div class="chat__ava-wrap"><img class="chat__ava" src="${img}" id="chatAva${nick}" ></div>
 	              
 					<div class="chat__message">
 					<span class="chat__text"> ${mes}</span>
@@ -199,6 +171,7 @@
 
 		const liMes = document.createElement('li');
 		liMes.classList.add('chat__messages');
+		liMes.classList.add(`liMes${nick}`);
 		liMes.innerHTML = mesTemplate;
 
 		ChatList.appendChild(liMes);
@@ -285,15 +258,7 @@
 
 			socket.send(JSON.stringify(currentUser));
 			currentAva.setAttribute('src', currentUser.img);
-			if (chatAvas.length > 0) {
-				for (let chatAva of chatAvas) {
-					let avaId = chatAva.getAttribute('id');
-					if (avaId === `chatAva${currentUser.nick}`) {
-						chatAva.setAttribute('src', currentUser.img);
-					}
-
-				}
-			}
+			initChatAva();
 
 			closeFade(modalLoad);
 		})
@@ -307,17 +272,95 @@
 		btnSend.addEventListener('click', function (e) {
 			e.preventDefault();
 
+			for (user of usersOnlineArr) {
+				if (user.nick === currentUser.nick) {
+					currentUser = user
+				}
+			}
 			currentUser.type = 'sendMessage';
 			currentUser.lastMes = inputMes.value;
 
-			socket.send(JSON.stringify(inputMes.value));
+			socket.send(JSON.stringify(currentUser));
 
 			inputMes.value = '';
-			
+			initLastMessage();
+
 		});
 
 	})();
 
+	function initChatAva() {
+		const thisAvas = document.querySelectorAll('.chat__ava');
+		let avaID;
+
+		if (thisAvas.length > 1) {
+			thisAvas.forEach(ava => {
+				avaID = ava.getAttribute('id');
+				for (user of usersOnlineArr) {
+					if (avaID == `chatAva${user.nick}`) {
+						ava.setAttribute('src', user.img)
+					}
+				}
+			});
+		}
+
+		if (thisAvas.length === 1) {
+			avaID = thisAvas[0].getAttribute('id');
+			for (user of usersOnlineArr) {
+				if (avaID == `chatAva${user.nick}`) {
+					thisAvas[0].setAttribute('src', user.img)
+				}
+			}
+		}
+	};
+
+	function initLastMessage() {
+		const lastMessages = document.querySelectorAll('.participant_mes');
+		let msgID;
+
+		if (lastMessages.length > 1) {
+			lastMessages.forEach(mes => {
+				msgID = mes.getAttribute('id');
+
+				usersOnlineArr.forEach( user => {
+					if (msgID == `lastmessage${user.nick}`) {
+						mes.textContent = user.lastMes
+					}
+				})
+			});
+		}
+		if (lastMessages.length === 1) {
+			msgID = lastMessages[0].getAttribute('id');
+
+			for (user of usersOnlineArr) {
+				if (msgID == `lastmessage${user.nick}`) {
+					lastMessages[0].textContent = user.lastMes
+				}
+			}
+		}
+
+	};
+	
+	function initActiveMessage() {
+		const messagesItem = document.querySelectorAll('.chat__messages');
+		
+		if(messagesItem.length > 1) {
+			messagesItem.forEach(messageItem => {	
+		
+				if (messageItem.classList.contains(`liMes${currentUser.nick}`)) {
+					messageItem.classList.add('active')
+				};			
+		});
+			
+		};
+		
+		if(messagesItem.length === 1) {
+			if (messagesItem[0].classList.contains(`liMes${currentUser.nick}`)) {
+					messagesItem[0].classList.add('active')
+				};
+		};		
+		
+	}
 
 	function OpenFade(modal) {
 		let opO = 0;
