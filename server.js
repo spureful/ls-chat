@@ -41,7 +41,7 @@ class Users {
 	getAllUsers() {
 		return this.usersOnline
 	}
-	
+
 	getOfflineUsers() {
 		return this.usersOffline
 	}
@@ -52,12 +52,12 @@ const users = new Users();
 const currentUser = {};
 
 webSocketServer.on('connection', function (ws) {
-	ws.on('open', function() {
+	ws.on('open', function () {
 		webSocketServer.clients.forEach(client => {
-				if (client.readyState === WebSocket.OPEN) {
+			if (client.readyState === WebSocket.OPEN) {
 				client.send(JSON.stringify(users.getAllUsers()));
-				}
-			});
+			}
+		});
 		console.log(users)
 	});
 
@@ -65,7 +65,7 @@ webSocketServer.on('connection', function (ws) {
 
 
 		const msg = JSON.parse(message);
-	
+
 
 		if (msg.type === 'userSavePhoto') {
 			users.savePhoto(msg.nick.toLowerCase(), msg.img);
@@ -74,9 +74,9 @@ webSocketServer.on('connection', function (ws) {
 				if (client.readyState === WebSocket.OPEN) {
 					client.send(JSON.stringify({
 						type: 'getAllUsers',
-						users: users.getAllUsers
-					}));					
-				
+						users: users.getAllUsers()
+					}));
+
 				}
 			});
 		} else if (msg.type === 'userInfo') {
@@ -88,8 +88,8 @@ webSocketServer.on('connection', function (ws) {
 			if (!users.getUser(msg.nick.toLowerCase())) {
 				users.setUser(msg.nick.toLowerCase(), msg)
 
-			}		
-			
+			}
+
 			webSocketServer.clients.forEach(client => {
 				if (client.readyState === WebSocket.OPEN) {
 					client.send(JSON.stringify({
@@ -99,15 +99,26 @@ webSocketServer.on('connection', function (ws) {
 					}))
 				}
 			});
-			
+
 
 		} else {
 
-
+//			currentUser.name = msg.name;
+//			currentUser.nick = msg.nick;
+//			currentUser.img = msg.img;
+//			currentUser.lastMes = msg.lastMes;
+//			
+//			users.setUser(msg.nick.toLowerCase(), msg)
+//			
+				
 			webSocketServer.clients.forEach(client => {
 				if (client.readyState === WebSocket.OPEN) {
 					client.send(message);
-					
+//					client.send(JSON.stringify({
+//						type: 'sendMessage',
+//						users: users.getAllUsers()
+//					}));
+
 				}
 			});
 		}
@@ -120,7 +131,7 @@ webSocketServer.on('connection', function (ws) {
 			if (client.readyState === WebSocket.OPEN) {
 				client.send(JSON.stringify({
 					type: 'getAllUsers',
-					users: users.getAllUsers(), 
+					users: users.getAllUsers(),
 					offline: users.getOfflineUsers()
 				}))
 			}

@@ -7,12 +7,10 @@ block content
 		h1.authorisation__title Авторизация
 		p.authorisation__descr Введите пожалуйста своё фио и ник для дальнейшей авторизации
 		form.authorisation__form(name="publish")
-			label.authorisation__label
-				input.authorisation__input#authorisation-name(
+			input.authorisation__input#authorisation-name(
             name="message" placeholder="Введите своё имя")
-			label.authorisation__label
-				input.authorisation__input#authorisation-nick(placeholder="Введите свой ник")
-			button(type='button').authorisation__enter ВОЙТИ
+			input.authorisation__input#authorisation-nick(placeholder="Введите свой ник")
+			button(type='submit').authorisation__enter ВОЙТИ
 
 			
 			
