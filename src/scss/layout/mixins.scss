@@ -37,6 +37,8 @@ $text-color: #fff;
 		background-color: $c;
 		content: '';
 		position: absolute;
+		top: 0;
+		left: 0;
 		transition: .7s;
 	}
 	
@@ -48,10 +50,10 @@ $text-color: #fff;
 	}
 	
 	&:before {
-		transform: rotate(45deg);
+		transform: rotate(45deg)  translate($h/2, $w/2);
 	}
 	
 	&:after {
-		transform: rotate(-45deg);
+		transform: rotate(-45deg) translate(-$h/2, $w/2) ;
 	}
 }
