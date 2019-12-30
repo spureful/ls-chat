@@ -1,0 +1,415 @@
+.app {
+
+	background-color: #17212b;
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+
+	margin: 0 auto;
+	width: 80%;
+	height: 90%;
+	display: none;
+}
+
+//.app__header {
+//	width: 100%;
+//	background-color: #242f3d;
+//}
+//
+//.size-btn {
+//	display: -webkit-flex;
+//	display: -moz-flex;
+//	display: -ms-flex;
+//	display: -o-flex;
+//	display: flex;
+//	justify-content: flex-end;
+//}
+//
+//.size-btn__item {
+//	padding: 3px 0;
+//	margin: 0 9px 0 0;
+//}
+//
+//.size-btn__btn {
+//	padding: 0;
+//	vertical-align: middle;
+//	width: 11px;
+//	height: 11px;
+//	background-color: transparent;
+//	border: none;
+//	transition: 0.7;
+//}
+//
+//.size-btn__btn--minimize {
+//	border-bottom: 2px solid #52616d;
+//
+//	&:hover {
+//		border-bottom: 2px solid #fff;
+//	}
+//}
+//
+//.size-btn__btn--maximize {
+//
+//	border: 2px solid #52616d;
+//
+//	&:hover {
+//		border: 2px solid #fff;
+//	}
+//}
+//
+//.size-btn__btn--close {
+//	position: relative;
+//
+//	&:before,
+//	&:after {
+//		content: '';
+//		width: 13px;
+//		height: 2px;
+//		background-color: #52616d;
+//		position: absolute;
+//		top: 50%;
+//		left: 0;
+//
+//		transition: .7s;
+//	}
+//
+//	&:before {
+//		transform: rotate(45deg)
+//	}
+//
+//	&:after {
+//		transform: rotate(-45deg)
+//	}
+//
+//	&:hover {
+//
+//		&:before,
+//		&:after {
+//			background-color: #fff;
+//		}
+//	}
+//}
+
+.aside {
+	width: 30%;
+	padding: 10px 20px;
+}
+
+.aside__menu {
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 20px;
+}
+
+.aside__menu--btn {
+	width: 18px;
+	height: 12px;
+	background-color: transparent;
+	border: none;
+	margin-right: 11px;
+
+	position: relative;
+
+
+
+	.aside__menu--btnline,
+	&:before,
+	&:after {
+		content: '';
+		width: 100%;
+		height: 2px;
+		background-color: #6c7883;
+
+		position: absolute;
+		left: 0;
+
+		transition: .7s;
+	}
+
+	.aside__menu--btnline {
+		top: 50%;
+		transform: translateY(-50%);
+	}
+
+	&:before {
+		top: 0;
+	}
+
+	&:after {
+		bottom: 0;
+	}
+
+	&:hover {
+
+		.aside__menu--btnline,
+		&:before,
+		&:after {
+			background-color: #fff;
+		}
+	}
+}
+
+.aside__menu--input {
+	padding: 11px 9px;
+	background-color: #242f3d;
+	border-radius: 5px;
+	border: none;
+
+	font-size: 14px;
+	color: #fff;
+
+	width: 100%;
+}
+
+.aside__menu--input::-webkit-input-placeholder {
+	color: #858e97;
+}
+
+.aside__menu--input::-moz-placeholder {
+	color: #858e97;
+}
+
+.aside__menu--input:-moz-placeholder {
+	color: #858e97;
+}
+
+.aside__menu--input:-ms-input-placeholder {
+	color: #858e97;
+}
+
+.participant__item {
+	margin-bottom: 11px;
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+
+}
+
+.participant__ava-wrap {
+	width: 47px;
+	height: 47px;
+	border-radius: 50%;
+	overflow: hidden;
+	background-color: #0e1621;
+	margin-right: 12px;
+}
+
+.participant__ava {
+	width: 100%;
+	height: 100%;
+}
+
+.participant__info {
+	font-size: 14px;
+	font-weight: 300;
+	color: #7f91a4;
+}
+
+.participant__name {
+	font-size: 14px;
+	margin-bottom: 5px;
+	color: #fff;
+	;
+}
+
+
+.chat {
+	width: 68%;
+	border: 1px solid #101921;
+	padding-top: 10px;
+
+}
+
+.chat__title {
+	margin-bottom: 15px;
+}
+
+.chat__name {
+	font-size: 14px;
+	font-weight: 300;
+	color: #fff;
+	margin-bottom: 7px;
+}
+
+.chat__participants {
+	font-size: 14px;
+	font-weight: 300;
+	color: #7f91a4;
+}
+
+.chat__block {
+	background-color: #0e1621;
+	padding: 20px 10px;
+	min-height: 500px;
+}
+
+.chat__mes-list {
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	flex-direction: column;
+}
+
+.chat__messages {
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	margin-bottom: 15px;
+
+//	&:nth-child(2n) {
+//		align-self: flex-end;
+//
+//		.chat__ava-wrap {
+//			order: 2;
+//			margin-right: 0;
+//		}
+//
+//
+//
+//		.chat__message {
+//			background-color: #2b5278;
+//			order: 1;
+//			margin-right: 15px;
+//
+//			&:before {
+//				background-image: url(../img/triangle-right.svg);
+//				left: calc(100% - 6px);
+//
+//			}
+//		}
+//
+//	}
+
+
+}
+
+.chat__messages.active {
+		align-self: flex-end;
+
+		.chat__ava-wrap {
+			order: 2;
+			margin-right: 0;
+		}
+
+
+
+		.chat__message {
+			background-color: #2b5278;
+			order: 1;
+			margin-right: 15px;
+
+			&:before {
+				background-image: url(../img/triangle-right.svg);
+				left: calc(100% - 6px);
+
+			}
+		}
+}
+
+.chat__ava-wrap {
+	border-radius: 50%;
+	overflow: hidden;
+	width: 33px;
+	height: 33px;
+	margin-right: 15px;
+	background-color: #182533;
+}
+
+.chat__ava {
+	width: 100%;
+}
+
+.chat__message {
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 5px;
+	padding: 11px 8px 9px 16px;
+	background-color: #182533;
+	border-radius: 7px;
+
+	font-size: 14px;
+	font-weight: 300;
+	color: #7a8c9e;
+
+
+	position: relative;
+
+	&:before {
+		content: '';
+		display: block;
+		height: 12px;
+		width: 12px;
+		background-image: url(../../img/triangle-left.svg);
+		position: absolute;
+		bottom: 0;
+		left: -6px;	}
+}
+
+.chat__text {
+	color: #fff;
+	padding-right: 14px;
+	align-self: center;
+}
+
+.chat__date {
+	align-self: flex-end;
+}
+
+.chat__form {
+	padding: 13px 10px;
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+
+}
+
+.chat__input {
+	width: 100%;
+	margin-right: 15px;
+	padding: 10px;
+	border: none;
+	font-size: 14px;
+	font-weight: 300;
+	color: #fff;
+
+	background-color: transparent;
+
+}
+
+.chat__send-btn {
+	background-color: #5288c1;
+	border: none;
+	border-radius: 7px;
+	color: #fff;
+	font-size: 14px;
+	font-weight: 300;
+	padding: 8px 20px;
+
+	transition: .7s;
+
+	&:hover {
+		background-color: #0e1621;
+	}
+
+}

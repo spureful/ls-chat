@@ -18,3 +18,42 @@
 		@content;
 	}
 }
+
+
+$text-color: #fff;
+
+
+@mixin closebtn($w, $h, $c, $hc) {
+	width: $w ;
+	height: $h ;
+	position: relative;
+
+	background-color: transparent;
+	border: none;
+		
+	&:before, &:after {
+		width: 100%;
+		height: 2px;
+		background-color: $c;
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		transition: .7s;
+	}
+	
+	
+	&:hover {
+		&:before, &:after {
+			background-color: $hc;
+		}
+	}
+	
+	&:before {
+		transform: rotate(45deg)  translate($h/2, $w/2);
+	}
+	
+	&:after {
+		transform: rotate(-45deg) translate(-$h/2, $w/2) ;
+	}
+}

@@ -1,1 +1,2 @@
-import './modules/enter.js'
+import './app.js'
+
