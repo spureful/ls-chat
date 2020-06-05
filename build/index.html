@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="Ru ru">
+  <head>
+    <meta charset="utf-8">
+    <meta content="ie=edge" http-equiv="x-ua-compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Chat</title>
+    <link rel="stylesheet" href="css/main.css">
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="authorisation">
+        <h1 class="authorisation__title">Авторизация</h1>
+        <p class="authorisation__descr">Введите пожалуйста своё фио и ник для дальнейшей авторизации</p>
+        <form class="authorisation__form" name="publish">
+          <input class="authorisation__input" id="authorisation-name" name="message" placeholder="Введите своё имя">
+          <input class="authorisation__input" id="authorisation-nick" placeholder="Введите свой ник">
+          <button class="authorisation__enter" type="submit">ВОЙТИ</button>
+        </form>
+      </div>
+      <div class="app">
+        <aside class="aside">
+          <div class="aside__menu">
+            <button class="aside__menu--btn"><span class="aside__menu--btnline"></span></button>
+            <input class="aside__menu--input" placeholder="Найти...">
+          </div>
+          <ul class="participant"></ul>
+        </aside>
+        <main class="chat">
+          <div class="chat__title">
+            <h3 class="chat__name">Чат</h3>
+            <div class="chat__participants">2 участника</div>
+          </div>
+          <div class="chat__block">
+            <ul class="chat__mes-list"></ul>
+          </div>
+          <form class="chat__form">
+            <input class="chat__input" placeholder="Введите сообщение..." type="text">
+            <button class="chat__send-btn" type="submit">Отправить</button>
+          </form>
+        </main>
+      </div>
+      <!--	ul.participant-->
+      <!--			- var participants = [{ava: 'img/men1.png', name: 'Игорь Яицкий', message: 'Рад был пообщаться' }, {ava: '/img/men2.jpg', name: 'Алексей Трубин', message: 'Привет!' }]-->
+      <!--				each participant in participants-->
+      <!--					li.participant__item-->
+      <!--						.participant__ava-wrap-->
+      <!--							img.participant__ava(src=`${participant.ava}`)-->
+      <!--						.participant__info-->
+      <!--							h3.participant__name #{participant.name}-->
+      <!--							.participant_mes #{participant.message}-->
+      <!--li.participant__item-->
+      <!--				.participant__ava-wrap-->
+      <!--					img.participant__ava(src='')-->
+      <!--				.participant__info-->
+      <!--					h3.participant__name -->
+      <!--					.participant_mes -->
+      <!--		- var chatInfoS = [{ava: 'img/men1.png',  time: ['17:55'], text: ['Привет!', 'Как дела?' ]}, {ava: '/img/men2.jpg', time: ['17:58'], text: ['Привет!', 'Хорошо', 'Как у тебя дела?' ]}, {ava: '/img/men1.png', time: ['17:59'], text: ['У меня тоже все хорошо', 'Рад был пообщаться' ]}]-->
+      <!--					each chatInfo in chatInfoS-->
+      <!--						li.chat__mes-item-->
+      <!--							.chat__ava-wrap-->
+      <!--								img.chat__ava(src=`${chatInfo.ava}`)-->
+      <!--							ul.chat__messages-->
+      <!--								each mes in chatInfo.text-->
+      <!--									li.chat__message-->
+      <!--										span.chat__text #{mes}-->
+      <!--										span.chat__date #{chatInfo.time}-->
+      <div class="photo__wrap photo__wrap--modal">
+        <div class="photo__modal">
+          <button class="photo__modal-close"></button>
+          <h3 class="photo__title">Загрузка фото</h3>
+          <div class="photo__row">
+            <input class="photo__modal-wrap" type="file">
+            <div class="photo__col">
+              <h4 class="photo__name">Алексей Трубин</h4>
+              <div class="photo__status">В сети</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="photo__wrap photo__wrap--load">
+        <div class="photo__load">
+          <div class="photo__load-wrap"><img class="photo__load-ava" src="">
+            <div class="photo__load-wrap-second"></div>
+          </div>
+          <div class="photo__load-descr">Область для профильной фотографии</div>
+          <div class="photo__load-btns">
+            <button class="photo__load-btn" id="photo-cancel">ОТМЕНА</button>
+            <button class="photo__load-btn" id="photo-save">СОХРАНИТЬ</button>
+          </div>
+        </div>
+      </div>
+      <!--				img(src="").photo__img-->
+      <div class="error">
+        <div class="error__block">
+          <h2 class="error__title"></h2>
+          <button class="error__btn">ok</button>
+        </div>
+      </div>
+    </div>
+    <script src="js/scripts.js"></script>
+  </body>
+</html>
